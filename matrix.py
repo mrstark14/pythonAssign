@@ -68,30 +68,33 @@ class Matrix:
                 c=c1
             a=Matrix(c,self.rows,self.rows)
             return a
-    def determinant(self,a):
+    def determinant(self):
         if(self.col!=self.rows):
             return "NOT POSSIBLE"
         else:
             x=0
-            if len(a)==1:
-                return a[0][0]
+            if len(self.mat)==1:
+                return self.mat[0][0]
             else:
-                for d in range(0,len(a)):   
+                for d in range(0,len(self.mat)):   
                     if(d==0):
                         c=[]
-                        for y in range(1,len(a)):
-                            c.append(a[y][1:])
-                        x+=((-1)**d)*a[0][d]*self.determinant(c)
-                    elif(d==len(a)-1):
+                        for y in range(1,len(self.mat)):
+                            c.append(self.mat[y][1:])
+                        c1=Matrix(c,self.rows-1,self.col-1)
+                        x+=((-1)**d)*self.mat[0][d]*c1.determinant()
+                    elif(d==len(self.mat)-1):
                         c=[]
-                        for y in range(1,len(a)):
-                            c.append(a[y][0:len(a)-1])
-                        x+=((-1)**d)*a[0][d]*self.determinant(c)
+                        for y in range(1,len(self.mat)):
+                            c.append(self.mat[y][0:len(self.mat)-1])
+                        c1=Matrix(c,self.rows-1,self.col-1)
+                        x+=((-1)**d)*self.mat[0][d]*c1.determinant()
                     else:
                         c=[]
-                        for y in range(1,len(a)):
-                            c.append(a[y][0:d]+a[y][d+1:])
-                        x+=((-1)**d)*a[0][d]*self.determinant(c)             
+                        for y in range(1,len(self.mat)):
+                            c.append(self.mat[y][0:d]+self.mat[y][d+1:])
+                        c1=Matrix(c,self.rows-1,self.col-1)
+                        x+=((-1)**d)*self.mat[0][d]*c1.determinant()             
             return x   
 #a=Matrix([[14,30,3],[5,8,5]],2,3)
 #b=Matrix([[2,3,4],[5,6,7]],2,3)
@@ -103,7 +106,7 @@ class Matrix:
 #print(a*c)
 #print(c*a)
 #print(c*d)
-#print(d.determinant(d.mat))
+#print(d.determinant())
 #print(c.determinant(c.mat))
 #print(d.exponent(3))
 #print(c.exponent(3))
@@ -138,11 +141,11 @@ class LearnTest(unittest.TestCase):
         result1 = "NOT POSSIBLE"
         self.assertEqual(result,result1)
     def test_func_7(self):
-        result=self.d.determinant(self.d.mat)
+        result=self.d.determinant()
         result1 = 47
         self.assertEqual(result,result1)
     def test_func_8(self):
-        result=self.c.determinant(self.c.mat)
+        result=self.c.determinant()
         result1 = "NOT POSSIBLE"
         self.assertEqual(result,result1)
     def test_func_9(self):

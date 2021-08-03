@@ -22,7 +22,7 @@ class Matrix:
             e=Matrix(c,self.rows,self.col)
             return e
         else:
-            return "NOT POSSIBLE"
+            raise Exception("Order of two matrices different")
     def __sub__(self,other):
         if(self.rows==other.rows and self.col==other.col):
             c=[]
@@ -34,10 +34,10 @@ class Matrix:
             e=Matrix(c,self.rows,self.col)
             return e
         else:
-            return "NOT POSSIBLE"
+            raise Exception("Order of two matrices different")
     def __mul__(self,other):
         if(self.col!=other.rows):
-            return "NOT POSSIBLE"
+            raise Exception("Invalid operation")
         else:
             c=[]
             for x in range(0, self.rows):
@@ -52,7 +52,7 @@ class Matrix:
             return a
     def exponent(self, n):
         if(self.col!=self.rows):
-            return "NOT POSSIBLE"
+            raise Exception("NOT A SQUARE MATRIX")
         else:
             c=self.mat
             for x1 in range(0,n-1):
@@ -70,7 +70,7 @@ class Matrix:
             return a
     def determinant(self):
         if(self.col!=self.rows):
-            return "NOT POSSIBLE"
+            raise Exception("NOT A SQUARE MATRIX")
         else:
             x=0
             if len(self.mat)==1:
@@ -107,7 +107,7 @@ class Matrix:
 #print(c*a)
 #print(c*d)
 #print(d.determinant())
-#print(c.determinant(c.mat))
+#print(c.determinant())
 #print(d.exponent(3))
 #print(c.exponent(3))
 class LearnTest(unittest.TestCase):
@@ -124,10 +124,6 @@ class LearnTest(unittest.TestCase):
         result=self.a+self.b
         result1 = Matrix([[16,33,7],[10,14,12]],2,3)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_add_2(self):
-        result=self.a+self.d
-        result1 = "NOT POSSIBLE"
-        self.assertEqual(result,result1)
     def test_mul_1(self):
         result=self.a*self.c
         result1 = Matrix([[119,166],[54,72]],2,2)
@@ -136,25 +132,13 @@ class LearnTest(unittest.TestCase):
         result=self.c*self.a
         result1 = Matrix([[24,46,13],[62,122,29],[100,198,45]],3,3)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_mul_3(self):
-        result=self.c*self.d
-        result1 = "NOT POSSIBLE"
-        self.assertEqual(result,result1)
     def test_det_1(self):
         result=self.d.determinant()
         result1 = 47
-        self.assertEqual(result,result1)
-    def test_det_2(self):
-        result=self.c.determinant()
-        result1 = "NOT POSSIBLE"
         self.assertEqual(result,result1)
     def test_exp_1(self):
         result=self.d.exponent(3)
         result1 = Matrix([[23,52,210,126],[-4,17,68,36],[-13,-12,-45,-34],[14,8,96,45]],4,4)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_exp_2(self):
-        result=self.c.exponent(3)
-        result1 = "NOT POSSIBLE"
-        self.assertEqual(result,result1)
 if __name__=="__main__":
     unittest.main()

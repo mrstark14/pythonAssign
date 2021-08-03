@@ -116,43 +116,43 @@ class LearnTest(unittest.TestCase):
         self.b=Matrix([[2,3,4],[5,6,7]],2,3)
         self.c=Matrix([[1,2],[3,4],[5,6]],3,2)
         self.d=Matrix([[1,4,2,6],[0,1,4,4],[-1,0,1,0],[2,0,4,1]],4,4)
-    def test_func_1(self):
+    def test_sub_1(self):
         result=self.a-self.b
         result1 = Matrix([[12,27,-1],[0,2,-2]],2,3)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_func_2(self):
+    def test_add_1(self):
         result=self.a+self.b
         result1 = Matrix([[16,33,7],[10,14,12]],2,3)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_func_3(self):
+    def test_add_2(self):
         result=self.a+self.d
         result1 = "NOT POSSIBLE"
         self.assertEqual(result,result1)
-    def test_func_4(self):
+    def test_mul_1(self):
         result=self.a*self.c
         result1 = Matrix([[119,166],[54,72]],2,2)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_func_5(self):
+    def test_mul_2(self):
         result=self.c*self.a
         result1 = Matrix([[24,46,13],[62,122,29],[100,198,45]],3,3)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_func_6(self):
+    def test_mul_3(self):
         result=self.c*self.d
         result1 = "NOT POSSIBLE"
         self.assertEqual(result,result1)
-    def test_func_7(self):
+    def test_det_1(self):
         result=self.d.determinant()
         result1 = 47
         self.assertEqual(result,result1)
-    def test_func_8(self):
+    def test_det_2(self):
         result=self.c.determinant()
         result1 = "NOT POSSIBLE"
         self.assertEqual(result,result1)
-    def test_func_9(self):
+    def test_exp_1(self):
         result=self.d.exponent(3)
         result1 = Matrix([[23,52,210,126],[-4,17,68,36],[-13,-12,-45,-34],[14,8,96,45]],4,4)
         self.assertEqual(result.__repr__(),result1.__repr__())
-    def test_func_10(self):
+    def test_exp_2(self):
         result=self.c.exponent(3)
         result1 = "NOT POSSIBLE"
         self.assertEqual(result,result1)

@@ -1,4 +1,11 @@
 import unittest
+import mysql.connector
+from selenium import webdriver
+from time import sleep
+#from webdriver_manager.firefox import ChromeDriverManager
+from selenium.webdriver.firefox.options import Options 
+from getpass import getpass
+from bs4 import BeautifulSoup
 class Person:
     def __init__(self, name, work=None, city='Roorkee'):
         self.name = name
@@ -10,7 +17,6 @@ class Person:
 def decorator(func):
     def wrapper(i):
         c=0
-        import mysql.connector
         mydb = mysql.connector.connect(host='localhost',database='img', user='mrstark', password='Sanjeet@2001')
         mycursor = mydb.cursor()
         sql = "SELECT * FROM user WHERE username = '"+i+"'"
@@ -25,12 +31,7 @@ def decorator(func):
     return wrapper
 @decorator
 def scrap(username):
-    from selenium import webdriver
-    from time import sleep
-    #from webdriver_manager.firefox import ChromeDriverManager
-    from selenium.webdriver.firefox.options import Options 
-    from getpass import getpass
-    from bs4 import BeautifulSoup
+    
     usr=input('Enter Email Id:')
     pwd = getpass('Enter Password:')    
     driver = webdriver.Firefox()

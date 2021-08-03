@@ -140,5 +140,15 @@ class LearnTest(unittest.TestCase):
         result=self.d.exponent(3)
         result1 = Matrix([[23,52,210,126],[-4,17,68,36],[-13,-12,-45,-34],[14,8,96,45]],4,4)
         self.assertEqual(result.__repr__(),result1.__repr__())
+    def test_det_2(self):
+        result=self.c.determinant()
+    def test_mul_3(self):
+        result=self.a*self.d
+    def test_add_2(self):
+        result=self.a+self.d
+    def test_exp_2(self):
+        result=self.c.exponent(3)
+    def test_sub_2(self):
+        result=self.a-self.d
 if __name__=="__main__":
     unittest.main()

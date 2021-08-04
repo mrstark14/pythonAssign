@@ -1,6 +1,15 @@
 import unittest
 class Matrix:
     def __init__(self, matrix,rows,col):
+        y=1
+        for x in matrix:
+            if len(x)!=col:
+                y=0
+                break
+            else:
+                continue
+        if(not y):
+            raise Exception("Invalid input")
         self.mat=matrix
         self.rows=rows
         self.col=col
@@ -150,5 +159,9 @@ class LearnTest(unittest.TestCase):
         result=self.c.exponent(3)
     def test_sub_2(self):
         result=self.a-self.d
+    def test_mat_1(self):
+        a=Matrix([[1,2],[1],[3,4]],3,2)
+    def test_mat_2(self):
+        a=Matrix([[1,2],[1,3],[3,4]],3,2) 
 if __name__=="__main__":
     unittest.main()
